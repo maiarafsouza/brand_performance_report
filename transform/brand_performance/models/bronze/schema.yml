@@ -1,0 +1,49 @@
+
+version: 2
+
+models:
+  - name: tm_sales
+    description: "KO TMs sales data"
+    data_tests:
+      - rows_not_missing
+      - dates_not_missing
+      - unique_rows
+    columns:
+      - name: gmv_ko_dc_lc
+        tests:
+          - not_null
+      - name: country
+        tests:
+          - not_null
+      - name: channel
+        tests:
+          - not_null
+      - name: platform_name
+        tests:
+          - not_null
+      - name: day
+        tests:
+          - not_null
+
+  - name: mkt_sales
+    description: "Market (KO+competitors) sales data"
+    data_tests:
+      - rows_not_missing
+      - dates_not_missing
+      - unique_rows
+    columns:
+      - name: gmv_mkt_dc_lc
+        tests:
+          - not_null
+      - name: country
+        tests:
+          - not_null
+      - name: channel
+        tests:
+          - not_null
+      - name: platform_name
+        tests:
+          - not_null
+      - name: day
+        tests:
+          - not_null

@@ -169,3 +169,18 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Data files
+/data
+/transform/brand_performance/data/
+/transform/brand_performance/seeds/
+
+# Database files
+transform/performance_data.db
+transform/performance_data.wal
+
+# Dev files
+TO-DO.md
+transform/brand_performance/duck.py
+
+

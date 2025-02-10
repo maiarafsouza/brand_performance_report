@@ -1,0 +1,9 @@
+sources:
+  - name: brand_performance_sources
+    tables:
+      - name: bronze_tm_sales
+        config:
+          external_location: read_csv('./data/bronze/tm_sales/**/*.csv', union_by_name = True, filename = True)
+      - name: bronze_mkt_sales
+        config:
+          external_location: read_csv('./data/bronze/market_sales/**/*.csv', union_by_name = True, filename = True)

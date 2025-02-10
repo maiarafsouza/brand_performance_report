@@ -1,0 +1,10 @@
+
+version: 2
+
+models:
+  - name: brand_tm
+    description: "Product categorization dimension"
+  - name: date
+    description: "Date dimension"
+  - name: platform
+    description: "Channel Platform dimension"
