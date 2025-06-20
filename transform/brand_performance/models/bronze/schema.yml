@@ -6,7 +6,8 @@ models:
     description: "KO TMs sales data"
     data_tests:
       - rows_not_missing
-      - dates_not_missing
+      - dates_not_missing:
+          tags: [date_test]
       - unique_rows
     columns:
       - name: gmv_ko_dc_lc
@@ -29,7 +30,8 @@ models:
     description: "Market (KO+competitors) sales data"
     data_tests:
       - rows_not_missing
-      - dates_not_missing
+      - dates_not_missing:
+          tags: [date_test]
       - unique_rows
     columns:
       - name: gmv_mkt_dc_lc

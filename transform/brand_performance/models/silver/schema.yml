@@ -2,44 +2,7 @@
 version: 2
 
 models:
-  - name: ko_sales
-    description: "KO products sales data"
-    columns: 
-      - name: subcat_id
-        data_tests:
-          - relationships:
-              to: ref('brand_tm')
-              field: subcat_id
-      - name: tm_brand_id
-        data_tests:
-          - relationships:
-              to: ref('brand_tm')
-              field: tm_brand_id
-      - name: platform_id
-        data_tests:
-          - relationships:
-              to: ref('platform')
-              field: id
-      - name: day
-        data_tests:
-          - relationships:
-              to: ref('date')
-              field: day
-  - name: non_ko_sales
-    description: "Non KO products sales data"
-    columns: 
-      - name: subcat_id
-        data_tests:
-          - relationships:
-              to: ref('brand_tm')
-              field: subcat_id
-      - name: platform_id
-        data_tests:
-          - relationships:
-              to: ref('platform')
-              field: id
-      - name: day
-        data_tests:
-          - relationships:
-              to: ref('date')
-              field: day
+  - name: std_ogz
+    description: "Classifies brands in sales table in original or zero sugar"
+  - name: std_brand_tm_name
+    description: "Standardizes brand and trademark names"

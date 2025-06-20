@@ -1,8 +1,0 @@
-
-version: 2
-
-models:
-  - name: og_zero
-    description: "Maps brand to sugar level classification (original or zero)"
-    enabled: false
-

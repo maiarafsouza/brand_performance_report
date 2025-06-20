@@ -1,6 +1,9 @@
 brand_performance:
-  target: local # this is the default target
+  target: dev # this is the default target
   outputs:
-    local:
+    dev:
       type: duckdb
-      path: '../performance_data.db'
+      path: '../performance_data_dev.db'
+    prod:
+      type: duckdb
+      path: '../performance_data_prod.db'

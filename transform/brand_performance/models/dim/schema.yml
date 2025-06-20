@@ -4,7 +4,15 @@ version: 2
 models:
   - name: brand_tm
     description: "Product categorization dimension"
-  - name: date
+  - name: dim_date
     description: "Date dimension"
-  - name: platform
+  - name: dim_platform
     description: "Channel Platform dimension"
+    tests:
+      - platform_not_missing:
+          description: "Verifies if all platforms present in fact are present in seed file"
+  - name: dim_geography
+    description: "Geography dimension"
+    tests:
+      - geography_not_missing:
+          description: "Verifies if all country, bo and state combinations present in fact are present in seed file"

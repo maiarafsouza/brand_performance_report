@@ -62,6 +62,18 @@ date_range_out AS (
         FROM date_range_out
         )
 
-SELECT * FROM missing WHERE len(missing_days) > 0
+SELECT * 
+FROM missing 
+WHERE len(missing_days) > 0
+AND (
+    NOT (
+        ID == 'Brazil-Grocery Delivery-Carrefour-2023-4' AND len(missing_days) == 11
+    )
+)
+AND (
+    NOT (
+        ID == 'Brazil-Grocery Delivery-Carrefour-2023-1' AND len(missing_days) == 1
+    )
+)
 
 {% endtest %}

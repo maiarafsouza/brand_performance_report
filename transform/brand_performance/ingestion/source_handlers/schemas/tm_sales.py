@@ -1,0 +1,282 @@
+from pandera import DataFrameSchema, Column, Check, Index, MultiIndex
+from transform.brand_performance.ingestion.source_handlers.schemas.checks import valid_date
+
+schema = DataFrameSchema(
+    columns={
+        "GMV_Beverage_DC_LC": Column(
+            dtype="float64",
+            checks=[
+                Check.greater_than_or_equal_to(
+                    min_value=0.0, raise_warning=False, ignore_na=True
+                ),
+                Check.less_than_or_equal_to(
+                    max_value=5217.020000000001,
+                    raise_warning=False,
+                    ignore_na=True,
+                ),
+            ],
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Transactions": Column(
+            dtype="int64",
+            checks=[
+                Check.greater_than_or_equal_to(
+                    min_value=0.0, raise_warning=False, ignore_na=True
+                ),
+                Check.less_than_or_equal_to(
+                    max_value=2033.0, raise_warning=False, ignore_na=True
+                ),
+            ],
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Volume_UC": Column(
+            dtype="float64",
+            checks=[
+                Check.greater_than_or_equal_to(
+                    min_value=0.0, raise_warning=False, ignore_na=True
+                ),
+                Check.less_than_or_equal_to(
+                    max_value=617.4422142832996,
+                    raise_warning=False,
+                    ignore_na=True,
+                ),
+            ],
+            nullable=True,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Geography_Country": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Geography_Bottler_2": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Geography_State": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Channel_Digital_Channel": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Channel_Platform_Name": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Geography_Vertical": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Period_Day": Column(
+            dtype="object",
+            checks=[
+                valid_date
+            ],
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Period_Month_Number": Column(
+            dtype="float64",
+            checks=[
+                Check.greater_than_or_equal_to(
+                    min_value=1.0, raise_warning=False, ignore_na=True
+                ),
+                Check.less_than_or_equal_to(
+                    max_value=12.0, raise_warning=False, ignore_na=True
+                ),
+            ],
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=False,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_1_1_Category": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_1_2_Category_Group": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_1_3_Beverage_Category": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_1_4_Beverage_Sub-Category": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_1_5_Trademark": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_1_6_Brand": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Package_MS-SS": Column(
+            dtype="object",
+            checks=[
+                Check.isin(
+                    ["MS", "SS", "Unas", "Unassigned"]
+                )
+            ],  
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+        "Product_Source_Product_Code_Display": Column(
+            dtype="object",
+            checks=None,
+            nullable=False,
+            unique=False,
+            coerce=False,
+            required=True,
+            regex=False,
+            description=None,
+            title=None,
+        ),
+    },
+    checks=None,
+    index=Index(
+        dtype="int64",
+        checks=[
+            Check.greater_than_or_equal_to(
+                min_value=0.0, raise_warning=False, ignore_na=True
+            ),
+            Check.less_than_or_equal_to(
+                max_value=19998.0, raise_warning=False, ignore_na=True
+            ),
+        ],
+        nullable=False,
+        coerce=False,
+        name=None,
+        description=None,
+        title=None,
+    ),
+    dtype=None,
+    coerce=False,
+    strict=True,
+    name="brand_performance_tm_sales",
+    ordered=False,
+    unique=None,
+    report_duplicates="all",
+    unique_column_names=True,
+    add_missing_columns=False,
+    title="TM Sales",
+    description="Trademark (KO) sales data schema validation",
+)
