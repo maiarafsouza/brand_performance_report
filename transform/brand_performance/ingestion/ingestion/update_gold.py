@@ -4,10 +4,10 @@ import os
 import pandas as pd
 # %%
 # %%
-os.chdir("../")
+os.chdir("../../")
 
 # %%
-con = duckdb.connect("../performance_data.db")
+con = duckdb.connect("../../performance_data_dev.db")
 
 # %%
 con.sql("SHOW ALL TABLES").show(max_rows=100)

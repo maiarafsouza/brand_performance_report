@@ -9,10 +9,10 @@ t1 AS (
         new_tm AS TM,
         new_brand as brand
     FROM {{ref('old_to_new_tmb')}}
-),
+)
 
-t2 AS (
-    SELECT 
+
+SELECT 
     *,
     {{brand_id(
     'category_1_1',
@@ -30,22 +30,10 @@ t2 AS (
         )}} AS subcat_id,
     {{tm_brand_id(
             'TM',
-            'brand'
-        )}} AS tm_brand_id,
-    {{brand_id(
-            'category_1_1',
-            'cat_group_1_2',
-            'bev_cat_1_3',
-            'bev_sub_cat_1_4',
-            'TM',
-            'brand'
-            )}} AS BRAND_ID
+            'brand',
+            'column'
+        )}} AS tm_brand_id
 FROM t1
-)
 
-SELECT 
-    *,
-    concat(subcat_id, ' -- ', tm_brand_id) AS product_id 
-FROM t2 
 
 

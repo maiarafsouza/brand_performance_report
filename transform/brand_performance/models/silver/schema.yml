@@ -4,5 +4,7 @@ version: 2
 models:
   - name: std_ogz
     description: "Classifies brands in sales table in original or zero sugar"
+  - name: test_std_ogz
+    description: "Classifies brands in sales table in original or zero sugar"
   - name: std_brand_tm_name
     description: "Standardizes brand and trademark names"

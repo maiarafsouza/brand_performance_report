@@ -1,15 +1,13 @@
 # %%
-import os
-from dotenv import load_dotenv
-from transform.brand_performance.ingestion.source_handlers.log import logger
-from transform.brand_performance.ingestion.source_handlers.pbi_csv import list_files_recursive
+from ingestion.__get_path import get_local_path
+from ingestion.source_handlers.log import logger
+from ingestion.source_handlers.pbi_csv import list_files_recursive
 import datetime
 # %%
-load_dotenv()
 
-START_DATE = os.getenv(f"START_DATE_SERIES")
-SRC_DIR = os.getenv(f"TM_SALES_RAW_DIR")
-TARGET_PATH = os.getenv(f"DATE_FILEPATH")
+START_DATE = get_local_path(f"START_DATE_SERIES")
+SRC_DIR = get_local_path(f"TM_SALES_RAW_DIR")
+TARGET_PATH = get_local_path(f"DATE_FILEPATH")
 FILENAME = TARGET_PATH.split("/")[-1]
 
 logger.info(f"Searching dates in {SRC_DIR}")
@@ -26,10 +24,10 @@ def next_month(period:tuple):
 def get_last_date():
     logger.info(f"Calculating last date")
     f = list_files_recursive(SRC_DIR)
-
+    f = [i.replace("\\", "/") for i in f]
     f.sort(reverse=True, )
 
-    periods = [(int(i.split("/")[5]), int(i.split("/")[6])) for i in f]
+    periods = [(int(i.split("/")[-3]), int(i.split("/")[-2])) for i in f]
     periods.sort(reverse=True)
     last_period = periods[0]
 

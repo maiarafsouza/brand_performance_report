@@ -1,12 +1,13 @@
 # %%
 import os
-from transform.brand_performance.ingestion.source_handlers.log import logger
-from transform.brand_performance.ingestion.source_handlers.schemas.validation import PbiCsvValidator
-from dotenv import load_dotenv
+# from transform.brand_performance.ingestion.source_handlers.log import logger
+# from transform.brand_performance.ingestion.source_handlers.schemas.validation import PbiCsvValidator
+from ingestion.source_handlers.log import logger
+from ingestion.source_handlers.schemas.validation import PbiCsvValidator
+from ingestion.__get_path import get_local_path
 import pandas as pd
 # %%
 
-load_dotenv()
 # %%
 f_list = []
 
@@ -50,8 +51,8 @@ def get_f_name(path:str, sep:str="/"):
 # %%
 def get_path(var):
     if __name__ == "__main__" and (os.getcwd() == "d:\\Users\\KO\\OneDrive - The Coca-Cola Company\\KO Unified Data Infrastructure\\Brand Performance Report\\transform\\brand_performance\\ingestion\\source_handlers"):
-        return f"../../{os.getenv(f"{var}").split("brand_performance/")[1]}"
-    return os.getenv(var)
+        return f"../../{get_local_path(f"{var}").split("brand_performance/")[1]}"
+    return get_local_path(var)
 
 # %%
 #def ingest_dir(dir, sep="/", old_dir:str="pbi_csv", new_dir:str="bronze"):

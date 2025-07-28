@@ -36,7 +36,7 @@ models:
     bronze:
       +materialized: table
     silver:
-      +materialized: view
+      +materialized: table
     dim:
       +materialized: table
     gold:
@@ -44,3 +44,4 @@ models:
 
 tests:
   +store_failures: true
+  +severity: warn

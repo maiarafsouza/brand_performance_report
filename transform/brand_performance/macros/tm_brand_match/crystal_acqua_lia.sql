@@ -3,6 +3,6 @@
 WHEN 
     brand IN ['Packaged Water', 'Sparkling Water'] 
     AND regexp_matches({{ean_product_name}}, 'ac*qua *lia', 'i') 
-THEN {{tm_brand_id('Crystal', 'Acqua Lia')}}
+THEN {{tm_brand_id('Crystal', 'Acqua_Lia', 'text')}}
 
 {% endmacro %}

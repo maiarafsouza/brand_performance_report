@@ -11,7 +11,8 @@ WITH t AS (
         year(day) as year_n,
         day(day) as day_n,
         weekday(day) as weekday_n
-    FROM {{ref('date_range')}})
+    FROM {{source('brand_performance_sources', 'date_range')}}
+)
 
 SELECT 
     * EXCLUDE (weekday_n),

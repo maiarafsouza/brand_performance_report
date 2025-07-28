@@ -1,8 +1,8 @@
 # %%
 import pandera as pa
-from transform.brand_performance.ingestion.source_handlers.schemas.market_sales import schema as mkt_schema
-from transform.brand_performance.ingestion.source_handlers.schemas.tm_sales import schema as tm_schema
-from transform.brand_performance.ingestion.source_handlers.log import logger
+from ingestion.source_handlers.schemas.market_sales import schema as mkt_schema
+from ingestion.source_handlers.schemas.tm_sales import schema as tm_schema
+from ingestion.source_handlers.log import logger
 
 
 # %%

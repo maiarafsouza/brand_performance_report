@@ -5,8 +5,8 @@ y = ['2022', '2023', '2024', '2025']
 m = ['1', '10', '11', '12', '2', '3', '4', '5', '6', '7', '8', '9']
 
 # %%
-pbi_mkt_base = "../data/pbi_csv/market_sales"
-bronze_mkt_base = "../data/bronze/market_sales"
+pbi_mkt_base = "../../data/pbi_csv/market_sales"
+bronze_mkt_base = "../../data/bronze/market_sales"
 
 
 def list_files(base):

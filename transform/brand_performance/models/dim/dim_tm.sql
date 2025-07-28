@@ -1,5 +1,6 @@
 {{ config(
-    schema='dim'
+    schema='dim',
+    enabled=true
 ) }}
 
 SELECT DISTINCT 
@@ -8,7 +9,10 @@ SELECT DISTINCT
         TM,
         brand,
         tm_brand_id,
-        product_id,
+        {{product_id(
+            'subcat_id',
+            'tm_brand_id'
+        )}} AS product_id,
         scoped
 
 FROM {{ref('converted_namelist')}}

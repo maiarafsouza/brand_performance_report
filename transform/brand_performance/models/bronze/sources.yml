@@ -4,6 +4,12 @@ sources:
       - name: bronze_tm_sales
         config:
           external_location: read_csv('./data/bronze/tm_sales/**/*.csv', union_by_name = True, filename = True)
+        meta:
+          dagster:
+            asset_key: ['ko_sales_dir']
       - name: bronze_mkt_sales
         config:
           external_location: read_csv('./data/bronze/market_sales/**/*.csv', union_by_name = True, filename = True)
+        meta:
+          dagster:
+            asset_key: ['mkt_sales_dir']

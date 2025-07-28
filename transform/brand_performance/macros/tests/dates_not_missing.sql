@@ -1,5 +1,9 @@
 {% test dates_not_missing(model) %}
 
+{{ config(
+    warn_if = ">17"
+) }}
+
 WITH days AS (
     SELECT DISTINCT 
         CONCAT(

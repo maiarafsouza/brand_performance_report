@@ -128,8 +128,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
-.venv
+*.env
+*.venv
 env/
 venv/
 ENV/
@@ -178,6 +178,8 @@ cython_debug/
 # Database files
 transform/performance_data.db
 transform/performance_data.wal
+transform/performance_data_dev.db
+transform/performance_data_dev.wal
 
 # Dev files
 TO-DO.md

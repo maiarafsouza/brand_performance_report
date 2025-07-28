@@ -1,5 +1,7 @@
 {% test unique_rows(model) %}
 
+-- record in unique file = file not duplicated
+
 WITH t AS (
     SELECT 
         *, 

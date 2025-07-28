@@ -18,6 +18,11 @@ from_fact AS (
     SELECT *,
     {{geography_id('country', 'country_state', 'bo')}} AS ID
     FROM from_fact_0
+    WHERE NOT (
+        (NOT regexp_matches(country, 'Bra[sz]il', 'i')) 
+        AND 
+        (country_state = 'SP')
+        )
 ),
 
 from_seed AS (

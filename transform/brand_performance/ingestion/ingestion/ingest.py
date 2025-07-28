@@ -3,8 +3,11 @@ import sys
 import os
 #from transform.brand_performance.ingestion.source_handlers.pbi_csv import f_list, ingest_dir
 #from dotenv import load_dotenv
-from transform.brand_performance.ingestion.source_handlers.log import logger
-from transform.brand_performance.ingestion.source_handlers.pbi_csv import DirectoryData
+from dagster_pipes import PipesContext, open_dagster_pipes
+#from transform.brand_performance.ingestion.ingestion.source_handlers.log import logger
+#from transform.brand_performance.ingestion.ingestion.source_handlers.pbi_csv import DirectoryData
+from ingestion.source_handlers.log import logger
+from ingestion.source_handlers.pbi_csv import DirectoryData
 # %%
 # load_dotenv()
 
@@ -34,7 +37,9 @@ from transform.brand_performance.ingestion.source_handlers.pbi_csv import Direct
 
 # %%
 def ingest_data(data_name, source_lvl, target_lvl):
+    context = PipesContext.get()
     directory = DirectoryData(data_name=data_name, source_lvl=source_lvl, target_lvl=target_lvl)
+    context.log.info("Ingestion request arrived")
     directory.ingest_dir()
 # %%
 if __name__ == "__main__":

@@ -44,3 +44,19 @@ commit_seed_edit:
 update_pbi_source:
 	cd transform/brand_performance && \
 	poetry run py -m update_gold
+
+test_brand_id_1:
+	cd transform/brand_performance && \
+	dbt run --select converted_namelist
+
+test_brand_id_2:
+	cd transform/brand_performance && \
+	dbt run --select std_brand_tm_name
+
+test_ogz_1:
+	cd transform/brand_performance && \
+	dbt run --select std_ogz
+
+test_ogz_2:
+	cd transform/brand_performance && \
+	dbt run --select test_std_ogz

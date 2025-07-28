@@ -6,13 +6,14 @@ WITH from_fact_0 AS (
         channel,
         UPPER(vertical) AS vertical
         FROM {{ref('tm_sales')}}
-    WHERE (country = 'Chile') AND (platform_name = 'Lider.cl') AND (left(CAST(day AS VARCHAR), 7) = '2024-01')
+    WHERE NOT ((country = 'Chile') AND (platform_name = 'Lider.cl') AND (left(CAST(day AS VARCHAR), 7) = '2024-01'))
     UNION
     SELECT DISTINCT
         platform_name, 
         channel,
         UPPER(vertical) AS vertical
     FROM {{ref('mkt_sales')}}
+    WHERE NOT ((country = 'Chile') AND (platform_name = 'Lider.cl') AND (left(CAST(day AS VARCHAR), 7) = '2024-01'))
     ),
 
 from_fact AS (

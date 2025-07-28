@@ -1,0 +1,9 @@
+sources:
+  - name: brand_performance_sources
+    tables:
+      - name: date_range
+        config:
+          external_location: read_csv('./data/bronze/date_range.csv')
+        meta:
+          dagster:
+            asset_key: ['date_file']

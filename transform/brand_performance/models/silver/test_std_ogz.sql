@@ -1,8 +1,8 @@
 {{ config(
-    schema='silver'
+    schema='silver',
+    enabled=false
 ) }}
 
--- Exception table
 WITH zero_sugar_exceptions AS (
     SELECT 
         'Coca-Cola Original' AS original_tm,
@@ -10,7 +10,8 @@ WITH zero_sugar_exceptions AS (
         'Coca-Cola Zero' AS new_brand
 ),
 
--- Create a lookup table to find the generic "zero sugar" brand for each subcat, tm combination
+-- Step 2: Create a lookup table to find the correct "zero sugar" brand generically.
+-- This replaces the slow correlated subquery.
 brand_lookup AS (
     SELECT
         subcat_id,
@@ -34,7 +35,7 @@ brand_lookup AS (
     WHERE rn = 1
 ),
         
--- Re-classify data
+-- Step 3: Re-classify data in a single, consolidated step
 reclassified_data AS (
     SELECT
         base.* EXCLUDE(tm, brand, is_zero),
@@ -65,17 +66,17 @@ reclassified_data AS (
         FROM {{ref('std_brand_tm_name')}}
         ) AS base
 
-    -- Join hardcoded exceptions
+    -- Join to find hardcoded exceptions
     LEFT JOIN zero_sugar_exceptions AS exc ON 
         base.tm = exc.original_tm
         AND ogz_match = true
 
-    -- Join generic "zero sugar" brand from lookup table
+    -- Join to find the generic "zero sugar" brand from our lookup table
     LEFT JOIN brand_lookup AS lu 
         ON base.tm = lu.tm
         AND base.subcat_id = lu.subcat_id
-        -- Only joins and finds a new brand if the logic flips the 'is_zero' flag
-        -- and the TM is not one of the hardcoded exceptions
+        -- We only want to join and find a new brand if the logic flips the 'is_zero' flag
+        -- and the TM is not one of the hardcoded exceptions.
         AND (
         CASE
                 WHEN 
@@ -90,7 +91,7 @@ reclassified_data AS (
         AND base.tm NOT IN ('Aquarius', 'Guarana Jesus') -- TMs to exclude from generic logic
 )
 
--- Select from the clean data and generate IDs
+-- Final Step: Select from the clean data and generate IDs
 SELECT 
     * EXCLUDE(tm_brand_id),
     {{tm_brand_id('tm', 'brand', 'column')}} AS tm_brand_id,
