@@ -21,6 +21,7 @@ dependencies = [
     "dagster (>=1.10.21,<2.0.0)",
     "etltools @ file:///D:/Users/KO/OneDrive%20-%20The%20Coca-Cola%20Company/KO%20Unified%20Data%20Infrastructure/Brand%20Performance%20Report/transform/brand_performance/ingestion",
     "dagster-pipes (>=1.10.21,<2.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
 ]
 
 

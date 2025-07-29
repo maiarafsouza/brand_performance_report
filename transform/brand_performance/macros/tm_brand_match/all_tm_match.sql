@@ -1,11 +1,19 @@
 {% macro all_tm_match(ean_product_name, TM)%}
 
+
+
 CASE 
     WHEN 
         regexp_matches({{TM}}, 'Unassigned|Tea|Not NARTD|Alcoholic Beverages|Packaged Water|Schweppes|Coca-Cola|Sprite', 'i')
         OR ({{TM}} IS NULL) 
         OR ({{TM}} = '')
     THEN 
+    -- TO-DO: 
+    -- 1 - Move patterns and results (including acqua-lia that currently is in other function) to seed and adjust macro to apply function to each seed line
+    -- (
+    -- priority,regex_pattern,new_tm,new_brand
+    -- 1,'jack *[e&] *coke|jack|daniel', 'i','Jack_&_Coke', 'Jack_&_Coke'
+    -- )
         CASE
             WHEN regexp_matches({{ean_product_name}}, 'jack *[e&] *coke|jack|daniel', 'i') THEN {{tm_brand_id('Jack_&_Coke', 'Jack_&_Coke', 'text')}}
             WHEN regexp_matches({{treat_cola_string(ean_product_name)}}, 'coca[ -]*cola *zero|coca[ -]*cola *cero|coca[ -]*cola light', 'i') THEN {{tm_brand_id('Coca-Cola_Zero', 'Coca-Cola_Zero', 'text')}}
